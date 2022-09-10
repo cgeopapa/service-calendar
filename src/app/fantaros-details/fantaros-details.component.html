@@ -1,0 +1,11 @@
+<p-dialog [(visible)]="visible" [modal]="true" [header]="'Λεπτομέρειες '+fantaros.name"
+    (onHide)="hide()">
+    <p-table [value]="fantaros.events.get()">
+        <ng-template pTemplate="body" let-e>
+            <tr>
+                <td>{{datePipe.transform(e.date, "EE dd/MM/YYYY", "el-GR")}}</td>
+                <td><span [ngClass]="'type ' + e.type">{{type(e.type)}}</span></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>

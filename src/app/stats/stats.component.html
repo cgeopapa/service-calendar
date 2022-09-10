@@ -1,0 +1,35 @@
+<p-table [value]="fantaroi" responsiveLayout="scroll" styleClass="p-datatable-striped p-datatable-gridlines">
+    <ng-template pTemplate="header">
+        <tr>
+            <th rowspan="2">Όνομα</th>
+            <th colspan="3">
+                <div class="flex justify-content-center align-items-center">
+                    Μήνα
+                    <p-dropdown [options]="months" optionLabel="name" optionValue="v"
+                    [(ngModel)]="selectedMonth" class="ml-2"></p-dropdown>
+                </div>
+            </th>
+            <th colspan="4">Σύνολο</th>
+        </tr>
+        <tr>
+            <th>Εργάσιμη</th>
+            <th>Σάββατο</th>
+            <th>Κυριακή</th>
+            <th>Εργάσιμη</th>
+            <th>Σάββατο</th>
+            <th>Κυριακή</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-fantaros>
+        <tr>
+            <td>{{fantaros.name}}</td>
+            <td>{{socSum(fantaros, selectedMonth, [1, 2, 3, 4, 5])}}</td>
+            <td>{{socSum(fantaros, selectedMonth, [6])}}</td>
+            <td>{{socSum(fantaros, selectedMonth, [0])}}</td>
+            <td>{{socSum(fantaros, null, [1, 2, 3, 4, 5])}}</td>
+            <td>{{socSum(fantaros, null, [6])}}</td>
+            <td>{{socSum(fantaros, null, [0])}}</td>
+            <td>{{socSum(fantaros)}}</td>
+        </tr>
+    </ng-template>
+</p-table>

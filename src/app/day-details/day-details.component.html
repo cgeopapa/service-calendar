@@ -1,0 +1,18 @@
+<p-dialog [(visible)]="visible" [modal]="true" [header]="date.toLocaleString('el-GR', {weekday:'long', year: 'numeric', month: '2-digit', day: '2-digit'})"
+    (onHide)="hide()" (onShow)="update()" appendTo="body" [style]="{width: '60vw'}"
+    [breakpoints]="{'640px': '100vw'}">
+    <p-table [value]="details" [loading]="loading" styleClass="p-datatable-sm p-datatable-striped">
+        <ng-template pTemplate="body" let-f>
+            <tr>
+                <td>{{f.name}}</td>
+                <td>
+                    <span *ngIf="read_only || f.status === 'A' || f.status === 'B' || f.status === 'F'; else editor">{{this.typeDictionary[f.status]}}</span>
+                    <ng-template #editor>
+                        <p-selectButton [(ngModel)]="f.status" [options]="editTypeOptions" optionLabel="name" optionValue="value"
+                        (onChange)="mnchange=true"></p-selectButton>
+                    </ng-template>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>

@@ -1,0 +1,46 @@
+<p-table [value]="fantaroi" (onEditComplete)="save()">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Όνομα</th>
+            <th>Θέση</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-f>
+        <tr>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" [(ngModel)]="f.name" (focus)="editedFantaros = f">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{f.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="seats" optionLabel="name"
+                        [(ngModel)]="f.seat" optionValue="name" (onFocus)="editedFantaros = f"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{f.seat}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <button pButton pRipple icon="pi pi-calendar" class="p-button-info p-button-rounded"
+                (click)="showDetails(f)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-outlined ml-2"
+                (click)="remove(f, $event)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary" class="p-0">
+        <button pButton pRipple label="Νέος" icon="pi pi-plus" (click)="add()" pTooltip="Θα πίξει" tooltipPosition="top"
+        class="p-button-plain p-button-text w-full block"></button>
+    </ng-template>
+</p-table>
+<app-fantaros-details [(visible)]="details" [fantaros]="detailsFantaros"></app-fantaros-details>
+<p-confirmPopup></p-confirmPopup>

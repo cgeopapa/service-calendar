@@ -1,0 +1,15 @@
+<p-dialog header="Λεπτομέρειες Μονάδας" [(visible)]="visible" 
+    [focusTrap]="true" [blockScroll]="true" [modal]="true"
+    [style]="{height: '90vh', width: '50vw'}"
+    [breakpoints]="{'640px': '100vw'}"
+    (onHide)="this.visibleChange.emit(false)">
+    <p-tabView>
+        <p-tabPanel header="Στατιστικά" leftIcon="pi pi-chart-line">
+            <app-stats [fantaroi]="fantaroi" [selectedMonth]="month"></app-stats>
+        </p-tabPanel>
+        <p-tabPanel header="Φαντάροι" leftIcon="pi pi-user">
+            <app-fantaroi-read-only *ngIf="read_only" [fantaroi]="fantaroi"></app-fantaroi-read-only>
+            <app-fantaroi *ngIf="!read_only" [fantaroi]="fantaroi"></app-fantaroi>
+        </p-tabPanel>
+    </p-tabView>
+</p-dialog>

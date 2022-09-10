@@ -1,0 +1,21 @@
+<p-dialog header="Άδειες" [(visible)]="visible" 
+    [focusTrap]="true" [blockScroll]="true" [modal]="true"
+    (onHide)="this.visibleChange.emit(false)">
+    <div class="p-float-label mt-2">
+        <p-calendar [(ngModel)]="range" selectionMode="range" [readonlyInput]="true"
+            appendTo="body" id="cal" dateFormat="dd/mm/yy"></p-calendar>
+        <label for="cal">Διάρκεια</label>
+    </div>
+    <div class="p-float-label mt-2">
+        <p-dropdown optionLabel="name" [options]="fantaroi" [(ngModel)]="fantaros" appendTo="body" id="f"></p-dropdown>
+        <label for="f">Φαντάρος</label>
+    </div>
+    <div class="p-float-label mt-2">
+        <input type="text" pInputText [(ngModel)]="desc" id="t"/>
+        <label for="t">Τύπος Άδειας</label>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Αποθήκευση" icon="pi pi-save" class="p-button-text p-button-confirm p-button-sm"
+            (click)="save()"></button>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fast-castle": {
+      "hosting": {
+        "fast-castle": [
+          "fast-castle"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fast-castle"
+  }
+}

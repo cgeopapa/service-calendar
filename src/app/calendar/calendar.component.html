@@ -1,0 +1,42 @@
+<div #caldiv style="height: 100vh" class="p-2">
+  <full-calendar #cal [options]="calendarOptions"></full-calendar>
+    <div class="p-2 absolute top-0 right-0">
+      <p-multiSelect *ngIf="!mobile" [options]="fantaroi" [(ngModel)]="selectedFantaroi" appendTo="body"
+        [maxSelectedLabels]="1" [selectedItemsLabel]="'Προβάλονται {0} φαντάρια'"
+        optionLabel="name" optionValue="name" placeholder="Προβολή"
+        (onChange)="fadeSelected()"></p-multiSelect>
+    </div>
+</div>
+
+<div *ngIf="loading" class="h-screen w-screen flex justify-content-center align-items-center absolute top-0 left-0 surface-500 z-1">
+  <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+</div>
+
+<app-overall-details
+  [read_only]="!isRoot"
+  [month]="selectedMonth"
+  [fantaroi]="fantaroi"
+  [(visible)]="overallDetailsVisible"
+></app-overall-details>
+<app-day-details
+  [read_only]="!isRoot"
+  [(visible)]="detailsVisible"
+  [date]="selectedDate"
+  [fantaroi]="fantaroi"
+></app-day-details>
+<app-offs
+  [(visible)]="offsVisible"
+  [range]="[selectedDate, selectedDateEnd]"
+  [fantaroi]="fantaroi"
+></app-offs>
+<p-overlayPanel #op [showCloseIcon]="true" [dismissable]="true">
+  <ng-template pTemplate class="m-1">
+    <div class="flex-column flex">
+      <h2>Επεξεργασία Υπηρεσίας</h2>
+      <p-dropdown [options]="fantaroi" optionLabel="name" [(ngModel)]="editingFantaros" 
+        appendTo="body" (onChange)="change()"></p-dropdown>
+      <button pRipple pButton class="p-button-danger p-button-outlined mt-2" icon="pi pi-trash" label="Delete" (click)="delEvent()"></button>
+    </div>
+  </ng-template>
+</p-overlayPanel>
+<p-contextMenu [target]="caldiv" [model]="contextMenu"></p-contextMenu>

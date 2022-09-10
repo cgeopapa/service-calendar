@@ -1,0 +1,20 @@
+<p-table [value]="fantaroi">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Όνομα</th>
+            <th>Θέση</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-f>
+        <tr>
+            <td>{{f.name}}</td>
+            <td>{{f.seat}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-calendar" class="p-button-info p-button-rounded ml-2"
+                (click)="showDetails(f)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<app-fantaros-details [(visible)]="details" [fantaros]="detailsFantaros"></app-fantaros-details>

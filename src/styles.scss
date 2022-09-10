@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/mdc-light-deeppurple/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeflex/primeflex.css";
+
+* {
+    padding: 0;
+    margin: 0;
+
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: azure;
+}
+
+.fc-day-sat,.fc-day-sun {
+    background: #ff000020;
+}
+
+.fc-daygrid-event-harness {
+    margin: .2rem;
+}
+
+.fc-event {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.fc-toolbar-title {
+    display: inline-block;
+}
+
+// Without it long events overlap. 
+.fc-daygrid-event-harness-abs, .fc-daygrid-event-harness {
+    height: 25px;
+}

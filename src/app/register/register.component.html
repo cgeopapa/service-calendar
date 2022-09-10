@@ -1,0 +1,12 @@
+<div class="flex justify-content-center align-items-center h-screen w-screen bg-repeat fish">
+    <p-card header="🐠 Παρουσιάσου Ψάρακλα 🐟">
+        <span class="p-float-label">
+            <p-autoComplete id="float-input" [(ngModel)]="name" [suggestions]="filteredFantaroiNames" 
+            (completeMethod)="search($event)" [dropdown]="true" class="w-full"></p-autoComplete>
+            <label for="float-input">Ονοματεπώνυμο</label>
+        </span>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="OK" icon="pi pi-check" (click)="ok()"></button>
+        </ng-template>
+    </p-card>
+</div>
